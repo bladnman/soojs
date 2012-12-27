@@ -1,7 +1,7 @@
 soojs
 =====
 
-Simple Object Oriented Javascript Pattern
+Simple Object Oriented JavaScript pattern
 
 
 This is an extremely simple Pattern that allows projects to quickly, partially or fully use some of the standard OO patterns found in other languages.
