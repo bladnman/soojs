@@ -16,5 +16,5 @@ This is not magic, it's better. It's Sooooo-JS!
 
 For a quick example you can check out the [TodoMVC app](http://www.bladnman.com/soojs/todoMVC/). 
 
-I'm editing a series of blog posts about the pattern that will greatly clarify what SOOJS is all about and how it fits in your bat-belt. Until the time I am finally done with that it may be best to dive through the above example.
 
+[Read an entire blog series about SOOJS](http://metal-sole.com/2012/12/29/soojs-a-simple-object-pattern-for-javascript-3/)
