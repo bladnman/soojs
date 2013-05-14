@@ -1,21 +1,25 @@
-function ClassNameHere(delegateRef, inViewId) {
+function ${NAME}(delegateRef, inViewId) {
 	var my 				= this;
 	var delegate 		= delegateRef || null;
 	var rootViewId		= inViewId;
-
+	var view            = null;
 
 	/* ---++---     ---++---     ---++---     ---++---     ---++---
 	 *	 P R O T O C O L
 	 *	 (implement these)
 	 */
 	var delegateCallbacks 	= {
+		mainViewWillShow 			: function () {
+			if(delegate && delegate.mainViewWillShow) {
+				delegate.mainViewWillShow();
+			}
+		},
 
-		aViewControllerCallback1 			: function () {
-			if(delegate && delegate.aControllerCallback1) {
-				delegate.aControllerCallback1();
+		mainViewDidShow 			: function () {
+			if(delegate && delegate.mainViewDidShow) {
+				delegate.mainViewDidShow();
 			}
 		}
-
 	};
 
 
@@ -23,9 +27,8 @@ function ClassNameHere(delegateRef, inViewId) {
 	 *	 I N I T I A L I Z E
 	 */
 	var initialize 			= function () {
-
+		view				= objects.getRootViewObject();
 		internals.attachUserActionHandlers();
-
 	};
 
 
@@ -35,33 +38,24 @@ function ClassNameHere(delegateRef, inViewId) {
 	 *	 W O R K E R S
 	 */
 	var options 	= {
-
 		debug				: false
-
 	};
 
 	var viewIds 	= {
-
-		SAVE_BUTTON_ID		: "saveButton"
-
 	};
 
 	var classes 	= {
-
 		saveButtonClass		: "someCSSClassName"
-
 	};
 
 	var objects 	= {
-
 		getRootViewObject 	: function () {
 			return $("#" + rootViewId);
 		},
 
 		getSaveButton		: function () {
-			return $("#" + viewIds.SAVE_BUTTON_ID);
+			return view.find("." + classes.saveButtonClass).first();
 		}
-
 	};
 
 
@@ -69,11 +63,9 @@ function ClassNameHere(delegateRef, inViewId) {
 	 *	 R E Q U E S T S
 	 */
 	var requests = {
-
-		showSaveButton 		: function () {
-			objects.getSaveButton().show();
+		show 		: function () {
+			animations.showFromTop();
 		}
-
 	};
 
 
@@ -82,23 +74,34 @@ function ClassNameHere(delegateRef, inViewId) {
 	 *   A C T I O N S
 	 */
 	var userActions = {
-
-		saveButtonPressed 	: function () {
-			internals.saveData();
-		}
-
+//		saveButtonPressed 	: function () {
+//			internals.saveData();
+//		}
 	};
 
+
+	/* ---++---     ---++---     ---++---     ---++---     ---++---
+	 *	 A N I M A T I O N S
+	 */
+	var animations = {
+		showFromTop 			: function (duration) {
+
+			delegateCallbacks.mainViewWillShow();
+			setTimeout(animations.showAniCompleted, duration);
+		},
+
+		showAniCompleted 		: function () {
+			delegateCallbacks.mainViewDidShow();
+		}
+	};
 
 	/* ---++---     ---++---     ---++---     ---++---     ---++---
 	 *	 D R A W E R S
 	 */
 	var drawers = {
-
-		showSaveButton 		: function () {
-			object.getSaveButton().show();
-		}
-
+//		showSaveButton 		: function () {
+//			object.getSaveButton().show();
+//		}
 	};
 
 
@@ -107,16 +110,14 @@ function ClassNameHere(delegateRef, inViewId) {
 	 *		F U N C T I O N S
 	 */
 	var internals = {
-
-		saveData	 				: function () {
-
-		},
+//		saveData	 				: function () {
+//
+//		},
 
 		attachUserActionHandlers 	: function () {
 			// SAVE PRESS
-			objects.getSaveButton().bind("click", userActions.saveButtonPressed);
+			//objects.getSaveButton().bind("click", userActions.saveButtonPressed);
 		}
-
 	};
 
 
@@ -125,10 +126,8 @@ function ClassNameHere(delegateRef, inViewId) {
 	 *	 H A N D L E R S
 	 */
 	var callbackHandlers = {
-
-		objectIAmDelegateOfCallback 		: function () {
-		}
-
+//		objectIAmDelegateOfCallback 		: function () {
+//		}
 	};
 
 
@@ -145,7 +144,7 @@ function ClassNameHere(delegateRef, inViewId) {
 	// ---++---     ---++---     ---++---     ---++---     ---++---
 	// * RUN UPON SETUP
 	initialize();
-
+	return my;
 
 
 }

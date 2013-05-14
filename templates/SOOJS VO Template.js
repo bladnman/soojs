@@ -1,4 +1,4 @@
-function ClassNameHere() {
+function ${NAME}() {
 
 	var my 				= this;
 	my.pubVar			= "";
@@ -34,7 +34,7 @@ function ClassNameHere() {
 	 *		F U N C T I O N S
 	 */
 	var internals = {
-		
+
 	};
 
 
@@ -49,5 +49,6 @@ function ClassNameHere() {
 	// ---++---     ---++---     ---++---     ---++---     ---++---
 	// * RUN UPON SETUP
 	initialize();
+	return my;
 
 }
